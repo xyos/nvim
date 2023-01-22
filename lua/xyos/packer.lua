@@ -91,8 +91,7 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-rhubarb' }
   use {
     'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function() require('neogit').setup() end
+    requires = 'nvim-lua/plenary.nvim'
   }
   use {
     'lewis6991/gitsigns.nvim',
