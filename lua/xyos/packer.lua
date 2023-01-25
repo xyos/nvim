@@ -71,6 +71,8 @@ return require('packer').startup(function(use)
   })
   use 'mattn/emmet-vim' -- emmet support
   use 'andymass/vim-matchup' -- matcher for %
+  use 'akinsho/toggleterm.nvim' -- terminal
+
   -- UI
   use 'p00f/nvim-ts-rainbow'
   use 'lukas-reineke/indent-blankline.nvim'
