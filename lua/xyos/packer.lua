@@ -26,10 +26,11 @@ return require('packer').startup(function(use)
     as = 'rose-pine'
   })
 
-  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
-  use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
+
+  -- neodev
+  use "folke/neodev.nvim"
 
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -37,6 +38,8 @@ return require('packer').startup(function(use)
       -- LSP Support
       {'neovim/nvim-lspconfig'},
       {'williamboman/mason.nvim'},
+      {'jay-babu/mason-nvim-dap.nvim'},
+      {'David-Kunz/jester'},
       {'williamboman/mason-lspconfig.nvim'},
 
       -- Autocompletion
@@ -103,6 +106,13 @@ return require('packer').startup(function(use)
     end
   }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+  -- statuscol
+  use('luukvbaal/statuscol.nvim')
+  -- DAP
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
+  use 'theHamsta/nvim-dap-virtual-text'
+  use 'nvim-telescope/telescope-dap.nvim'
   -- Trouble
   use {
     "folke/trouble.nvim",

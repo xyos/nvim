@@ -1,9 +1,12 @@
+require("neodev").setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
+  -- 'tsserver',
   'volar',
   'sumneko_lua',
   'rust_analyzer',
@@ -15,6 +18,9 @@ lsp.configure('sumneko_lua', {
         Lua = {
             diagnostics = {
                 globals = { 'vim' }
+            },
+            completion = {
+                callSnippet = "Replace"
             }
         }
     }
@@ -40,6 +46,10 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 -- this helps with copilot setup
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
+
+require("lspconfig").volar.setup{
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+}
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
