@@ -2,7 +2,12 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "folke/neodev.nvim" },
+		{
+			"folke/neodev.nvim",
+			config = function()
+				require("neodev").setup()
+			end,
+		},
 		"mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		{
