@@ -2,8 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-		{ "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+		{ "folke/neodev.nvim" },
 		"mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		{
@@ -23,7 +22,7 @@ return {
 			severity_sort = true,
 		},
 		-- Automatically format on save
-		autoformat = true,
+		autoformat = false,
 		-- options for vim.lsp.buf.format
 		-- `bufnr` and `filter` is handled by the LazyVim formatter,
 		-- but can be also overridden when specified
@@ -39,9 +38,6 @@ return {
 				-- mason = false, -- set to false if you don't want this server to be installed with mason
 				settings = {
 					Lua = {
-						workspace = {
-							checkThirdParty = false,
-						},
 						completion = {
 							callSnippet = "Replace",
 						},
@@ -104,14 +100,6 @@ return {
 				end
 			end
 			require("lspconfig")[server].setup(server_opts)
-		end
-
-		-- temp fix for lspconfig rename
-		-- https://github.com/neovim/nvim-lspconfig/pull/2439
-		local mappings = require("mason-lspconfig.mappings.server")
-		if not mappings.lspconfig_to_package.lua_ls then
-			mappings.lspconfig_to_package.lua_ls = "lua-language-server"
-			mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
 		end
 
 		local mlsp = require("mason-lspconfig")

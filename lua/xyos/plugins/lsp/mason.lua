@@ -10,6 +10,7 @@ return {
 			"shfmt",
 			"flake8",
 			"lua-language-server",
+			"vue-language-server",
 		},
 	},
 	---@param opts MasonSettings | {ensure_installed: string[]}

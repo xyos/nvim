@@ -23,8 +23,7 @@ require("lazy").setup({
 	},
 	require("xyos.plugins.telescope"),
 	"folke/which-key.nvim",
-	{ "folke/neoconf.nvim", cmd = "Neoconf" },
-	"folke/neodev.nvim",
+	{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 	-- StatusLine
 	"nvim-lualine/lualine.nvim",
 	-- colorschemes
@@ -37,9 +36,6 @@ require("lazy").setup({
 
 	"theprimeagen/harpoon",
 	"mbbill/undotree",
-
-	-- neodev
-	"folke/neodev.nvim",
 
 	require("xyos.plugins.lsp.lsp"),
 	require("xyos.plugins.lsp.mason"),
@@ -72,7 +68,6 @@ require("lazy").setup({
 	-- },
 
 	"folke/zen-mode.nvim",
-	"github/copilot.vim",
 	"eandrju/cellular-automaton.nvim",
 
 	-- Utilities
@@ -99,7 +94,7 @@ require("lazy").setup({
 
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"nvim-treesitter/nvim-treesitter-textobjects",
-	"nvim-treesitter/nvim-treesitter-context",
+	-- "nvim-treesitter/nvim-treesitter-context",
 	"nvim-treesitter/nvim-treesitter-refactor",
 	"nvim-treesitter/nvim-tree-docs",
 	{

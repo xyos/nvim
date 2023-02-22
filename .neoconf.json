@@ -5,18 +5,23 @@
       "plugins": [
         "nvim-lspconfig",
         "lsp"
-      ]
-    }
+      ],
+      "types": true,
+      "runtime": true
+    },
+    "lspconfig": true,
+    "pathStrict": true,
+    "setup_jsonls": true
   },
   "neoconf": {
     "plugins": {
-      "sumneko_lua": {
+      "lua_ls": {
         "enabled": true
       }
     }
   },
   "lspconfig": {
-    "sumneko_lua": {
+    "lua_ls": {
       "Lua.completion.callSnippet": "Replace"
     }
   }

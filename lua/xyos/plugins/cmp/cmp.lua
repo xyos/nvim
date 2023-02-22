@@ -45,9 +45,25 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
+		{
+			"zbirenbaum/copilot-cmp",
+			config = function()
+				require("copilot_cmp").setup({
+					method = "getCompletionsCycling",
+				})
+			end,
+			dependencies = {
+				{
+					"zbirenbaum/copilot.lua",
+					config = true,
+					opts = { panel = { enabled = false } },
+				},
+			},
+		},
 	},
 	opts = function()
 		local cmp = require("cmp")
+		local luasnip = require("luasnip")
 		return {
 			completion = {
 				completeopt = "menu,menuone,noinsert",
@@ -64,27 +80,55 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-			}),
-			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "buffer" },
-				{ name = "path" },
-			}),
-			formatting = {
-				format = function(_, item)
-					if kind_icons[item.kind] then
-						item.kind = kind_icons[item.kind] .. item.kind
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
+					else
+						fallback()
 					end
-					return item
+				end, {
+				"i",
+				"s",
+			}),
+			["<S-Tab>"] = cmp.mapping(
+				function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
 				end,
-			},
-			experimental = {
-				ghost_text = {
-					hl_group = "LspCodeLens",
-				},
-			},
-		}
+				{ "i", "s", }
+				),
+			["<CR>"] = cmp.mapping.confirm({
+				behavior = cmp.ConfirmBehavior.Replace,
+				select = true,
+			}),
+	}),
+	sources = cmp.config.sources({
+		{ name = "copilot" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "path" },
+	}),
+	formatting = {
+		format = function(_, item)
+			if kind_icons[item.kind] then
+				item.kind = kind_icons[item.kind] .. item.kind
+			end
+			return item
+		end,
+	},
+	experimental = {
+		ghost_text = {
+			hl_group = "LspCodeLens",
+		},
+	},
+}
 	end,
 }
