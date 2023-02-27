@@ -42,33 +42,7 @@ require("lazy").setup({
 	require("xyos.plugins.lsp.null_ls"),
 	require("xyos.plugins.cmp.cmp"),
 	require("xyos.plugins.cmp.lua_snip"),
-	-- {
-	--   'VonHeikemen/lsp-zero.nvim',
-	--   lazy = true,
-	--   dependencies = {
-	--     -- LSP Support
-	--     'neovim/nvim-lspconfig',
-	--     'williamboman/mason.nvim',
-	--     'jay-babu/mason-nvim-dap.nvim',
-	--     'David-Kunz/jester',
-	--     'williamboman/mason-lspconfig.nvim',
-
-	--     -- Autocompletion
-	--     'hrsh7th/nvim-cmp',
-	--     'hrsh7th/cmp-buffer',
-	--     'hrsh7th/cmp-path',
-	--     'saadparwaiz1/cmp_luasnip',
-	--     'hrsh7th/cmp-nvim-lsp',
-	--     'hrsh7th/cmp-nvim-lua',
-
-	--     -- Snippets
-	--     'L3MON4D3/LuaSnip',
-	--     'rafamadriz/friendly-snippets',
-	--   }
-	-- },
-
-	"folke/zen-mode.nvim",
-	"eandrju/cellular-automaton.nvim",
+	require("xyos.plugins.copilot"),
 
 	-- Utilities
 	"tpope/vim-commentary", -- comment utilities
