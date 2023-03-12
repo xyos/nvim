@@ -9,7 +9,7 @@ return {
         debounce = 100,
         auto_trigger = true,
         keymap = {
-          accept = "<C-CR>",
+          accept = "<S-CR>",
           decline = "<M-x>",
           prev = "<M-[>",
           next = "<M-]>",
