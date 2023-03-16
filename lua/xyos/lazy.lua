@@ -43,6 +43,7 @@ require("lazy").setup({
 	require("xyos.plugins.cmp.cmp"),
 	require("xyos.plugins.cmp.lua_snip"),
 	require("xyos.plugins.copilot"),
+	require("xyos.plugins.neogit"),
 
 	-- Utilities
 	"tpope/vim-commentary", -- comment utilities
@@ -80,10 +81,6 @@ require("lazy").setup({
 	-- Git
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
-	{
-		"TimUntersberger/neogit",
-		dependencies = "nvim-lua/plenary.nvim",
-	},
 	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
