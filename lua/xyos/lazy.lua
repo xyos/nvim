@@ -43,6 +43,7 @@ require("lazy").setup({
 	require("xyos.plugins.cmp.cmp"),
 	require("xyos.plugins.cmp.lua_snip"),
 	require("xyos.plugins.copilot"),
+	require("xyos.plugins.gpt"),
 	require("xyos.plugins.neogit"),
 
 	-- Utilities
