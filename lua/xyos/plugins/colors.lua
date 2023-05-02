@@ -1,13 +1,23 @@
 return {
-  "catppuccin/nvim",
-  lazy = false,
-  name = "catppuccin",
-  config = function()
-    vim.cmd('colorscheme catppuccin')
-  end,
-  opts = {
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = { -- :h background
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    priority = 1000, -- make sure primary colorscheme is loaded first
+    name = "catppuccin",
+    config = function()
+      vim.cmd('colorscheme catppuccin')
+    end,
+    opts = {
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      background = { -- :h background
       light = "latte",
       dark = "mocha",
     },
@@ -50,4 +60,4 @@ return {
     },
   }
 }
-
+}
