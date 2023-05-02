@@ -23,7 +23,6 @@ require("lazy").setup({
 	},
 	require("xyos.plugins.telescope"),
 	"folke/which-key.nvim",
-	{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 	-- StatusLine
 	"nvim-lualine/lualine.nvim",
 	-- colorschemes
@@ -45,6 +44,15 @@ require("lazy").setup({
 	require("xyos.plugins.copilot"),
 	require("xyos.plugins.gpt"),
 	require("xyos.plugins.neogit"),
+	{
+		"folke/neoconf.nvim",
+		cmd = "Neoconf",
+		config = function()
+			require("neoconf").setup({
+				-- Configuration here, or leave empty to defaults
+			})
+		end,
+	},
 
 	-- Utilities
 	"tpope/vim-commentary", -- comment utilities
