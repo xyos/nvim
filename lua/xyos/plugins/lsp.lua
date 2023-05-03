@@ -10,6 +10,7 @@ return {
     },
     "mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    { "jose-elias-alvarez/typescript.nvim" },
     {
       "hrsh7th/cmp-nvim-lsp",
       cond = function()
@@ -52,28 +53,55 @@ return {
           },
         },
       },
+      tsserver = {
+        settings = {
+          typescript = {
+            format = {
+              indentSize = vim.o.shiftwidth,
+              convertTabsToSpaces = vim.o.expandtab,
+              tabSize = vim.o.tabstop,
+            },
+          },
+          javascript = {
+            format = {
+              indentSize = vim.o.shiftwidth,
+              convertTabsToSpaces = vim.o.expandtab,
+              tabSize = vim.o.tabstop,
+            },
+          },
+          completions = {
+            completeFunctionCalls = true,
+          },
+        },
+      },
+
     },
     -- you can do any additional lsp server setup here
     -- return true if you don't want this server to be setup with lspconfig
     ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
     setup = {
-      -- example to setup with typescript.nvim
-      -- tsserver = function(_, opts)
-      --   require("typescript").setup({ server = opts })
-      --   return true
-      -- end,
-      -- Specify * to use this function as a fallback for any server
-      -- ["*"] = function(server, opts) end,
+      tsserver = function(_, opts)
+        require("lazyvim.util").on_attach(function(client, buffer)
+          if client.name == "tsserver" then
+            -- stylua: ignore
+            vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+            -- stylua: ignore
+            vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+          end
+        end)
+        require("typescript").setup({ server = opts })
+        return true
+      end,
     },
   },
   ---@param opts PluginLspOpts
   config = function(plugin, opts)
     -- setup autoformat
-    require("xyos.plugins.lsp.format").autoformat = opts.autoformat
+    require("xyos.util.lsp.format").autoformat = opts.autoformat
     -- setup formatting and keymaps
     require("xyos.util").on_attach(function(client, buffer)
-      require("xyos.plugins.lsp.format").on_attach(client, buffer)
-      require("xyos.plugins.lsp.keymaps").on_attach(client, buffer)
+      require("xyos.util.lsp.format").on_attach(client, buffer)
+      require("xyos.util.lsp.keymaps").on_attach(client, buffer)
     end)
 
     local icons = {

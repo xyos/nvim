@@ -1,7 +1,6 @@
 return {
   {
     "folke/tokyonight.nvim",
-    lazy = true,
   },
   {
     "rose-pine/neovim",
@@ -10,7 +9,6 @@ return {
   {
     "catppuccin/nvim",
     lazy = false,
-    priority = 1000, -- make sure primary colorscheme is loaded first
     name = "catppuccin",
     config = function()
       vim.cmd('colorscheme catppuccin')

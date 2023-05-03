@@ -7,6 +7,7 @@ return {
     ensure_installed = {
       "stylua",
       "shellcheck",
+      "prettierd",
       "shfmt",
       "flake8",
       "lua-language-server",
