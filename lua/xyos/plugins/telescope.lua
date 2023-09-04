@@ -94,6 +94,7 @@ return   {
       defaults = {
         prompt_prefix = " ",
         selection_caret = " ",
+        sorting_strategy = "ascending",
         mappings = {
           i = {
             ["<c-t>"] = function(...)

@@ -1,11 +1,22 @@
 return {
-  {
-    "folke/neoconf.nvim",
-    cmd = "Neoconf",
-    config = function()
-      require("neoconf").setup({
-        -- Configuration here, or leave empty to defaults
-      })
-    end,
-  },
+	{
+		"folke/neoconf.nvim",
+		cmd = "Neoconf",
+		config = function()
+			require("neoconf").setup({
+				-- Configuration here, or leave empty to defaults
+			})
+		end,
+	},
+	{
+		"glacambre/firenvim",
+
+		-- Lazy load firenvim
+		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+		-- cond = not not vim.g.started_by_firenvim,
+		build = function()
+			require("lazy").load({ plugins = "firenvim", wait = true })
+			vim.fn["firenvim#install"](0)
+		end,
+	},
 }
